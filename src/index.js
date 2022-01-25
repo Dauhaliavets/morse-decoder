@@ -38,7 +38,17 @@ const MORSE_TABLE = {
 };
 
 function decode(expr) {
-    // write your solution here
+    const regexp = /(?:0|1|\*){10}/gm;
+    const spaceChar = '**********';
+    
+    const arrayMatches = [...expr.matchAll(regexp)];
+    const arrChar = arrayMatches.map(match => {
+        if(match[0] === spaceChar) return ' ';
+        let morseCode = match[0].replaceAll('00', '').replaceAll('11', '-').replaceAll('10', '.');
+        return MORSE_TABLE[morseCode];
+    });
+
+    return arrChar.join('');
 }
 
 module.exports = {
