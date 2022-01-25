@@ -44,7 +44,7 @@ function decode(expr) {
     const arrayMatches = [...expr.matchAll(regexp)];
     const arrChar = arrayMatches.map(match => {
         if(match[0] === spaceChar) return ' ';
-        let morseCode = match[0].replaceAll('00', '').replaceAll('11', '-').replaceAll('10', '.');
+        let morseCode = match[0].replace(/00/g, '').replace(/11/g, '-').replace(/10/g, '.');
         return MORSE_TABLE[morseCode];
     });
 
